@@ -1,0 +1,212 @@
+html,
+body {
+    height: 100%;
+}
+
+.loading {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin: 100px auto;
+}
+
+.step1, .step2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: loading 2.0s infinite ease-in-out;
+    animation: loading 2.0s infinite ease-in-out;
+}
+
+.step2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes loading {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes loading {
+    0%, 100% { 
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% { 
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+.navbar-inverse{
+    background-color: #693871;
+}
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.breadcrumb{
+    margin-top: 60px;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view td {
+    white-space: nowrap;
+}
+
+.grid-view .filters input,
+.grid-view .filters select {
+    min-width: 50px;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav > li > form {
+    padding: 8px;
+}
+
+.nav > li > form > button:hover {
+    text-decoration: none;
+}
+
+@media (min-width: 768px){
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+.sidebar .active{background-color: #eee;}
+#round-list tbody span:hover{
+    cursor: pointer;
+}
+
+#round-list tbody input[data-toggle]{
+    display: none;
+}
+
+table .split-name{
+    max-width: 200px;
+    white-space: normal;
+    font-size: 90%;
+}
+
+#modal-round .modal-body{
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+
+[data-sortable] [data-sortable-handler]:hover{
+    cursor: pointer;
+}
+
+[data-sortable] .list-group-item.list-group-item-warning{
+    min-height: 50px;
+    text-align: center;
+}
+
+[data-sortable] .list-group-item.list-group-item-warning:before{
+    content: "Suelte el elemento aqui.";
+    text-align: center;
+    font-size: normal;
+    color: rgba(138, 109, 59, 0.5);
+}
+
+[data-sortable] .ui-sortable-helper{
+    opacity: 0.8;
+}

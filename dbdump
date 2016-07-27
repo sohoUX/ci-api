@@ -1,0 +1,2 @@
+#!/bin/bash
+mysqldump -u root -p --opt --routines sellutions_app > sql/sellutions_app.$(date +"%Y%m%d-%H%M").sql

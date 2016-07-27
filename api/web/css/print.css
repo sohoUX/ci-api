@@ -1,0 +1,16 @@
+header .header-avatar{
+	display: none !important;
+}
+header .header-avatar{
+	display: none !important;
+}
+header .btn.btn-volver{
+	display: none !important;
+}
+.feature .container .btn.btn-primary{
+	display: none !important;
+}
+
+.not-print{
+	display: none !important;
+}

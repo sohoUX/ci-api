@@ -1,0 +1,92 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" ng-click="cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h3 class="modal-title">Dimensión <strong>{{ summary.form.name }}</strong></h3>
+</div>
+<div class="modal-body modal-summary">
+    <div class="row">
+    	<div class="table-responsive table-standar">
+	    	<table class="table">
+	            <tbody>
+	                <tr>
+	                    <td class="bold">Cliente:</td>
+	                    <td>{{ summary.company.name }}</td>
+	                    <td class="bold">Consultor SMH:</td>
+	                    <td>{{ summary.user }}</td>
+					</tr>
+					<tr>
+	                    <td class="bold">Aárea da evaluar:</td>
+	                    <td>Red de Sucursales</td>
+	                    <td class="bold">Fecha: </td>
+	                    <td>{{ summary.evaluation.updated_at | date:"dd.MM.YYYY" }}</td>
+	                </tr>
+					<tr>
+	                    <td class="bold">Ronda:</td>
+	                    <td>{{ summary.round.position }}</td>
+	                    <td class="bold">Resultado Visita:</td>
+	                    <td>{{ summary.result }}%</td>
+	                </tr>
+					<tr>
+	                    <td class="bold">Sucursal:</td>
+	                    <td>{{ summary.subsidiary.address }}</td>
+	                    <td class="bold">Resultado Visita Anterior:</td>
+	                    <td>{{ summary.last_result }}%</td>
+	                </tr>
+					<tr>
+	                    <td class="bold">Gerente:</td>
+	                    <td>{{ summary.subsidiary.manager }}</td>
+	                    <td class="bold"></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	        </table>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="modal-table-content">
+    		<h2 class="col-purple">Selecciona una opción a evaluar.</h2>
+	    	<table class="table">
+	    		<thead>
+	    			<tr>
+	    				<th>Sección</th>
+	    				<th>Pregunta</th>
+	    				<th>Resultado {{ (!current)?"Anterior":"" }}</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody>
+	    			<tr ng-repeat="answer in summary.answers">
+	    				<td ng-if="!answer.separator" class="bold">{{ answer.fieldset.name }}</td>
+	    				<td ng-if="!answer.separator">
+	    					<dl>
+								<dt>{{ answer.name }}</dt>
+								<dd>
+									<small><p class="detail-answer">{{ answer.comment }}</p></small>
+								</dd>
+							</dl>	    					
+	    				</td>
+	    				<td ng-if="!answer.separator" class="bold">{{ (answer.value) }}%</td>
+	    				<td ng-if="answer.separator" class="table-separator" colspan="3"></td>
+	    			</tr>
+	    		</tbody>
+	    		<tfoot>
+	    			<tr>
+	    				<td colspan="2" class="text-right">TOTAL</td>
+	    				<td>{{ "40%" }}</td>
+	    			</tr>
+	    		</tfoot>
+	    	</table>
+    	</div>
+    </div>
+</div>
+<div class="modal-footer bg-dark-gray">
+	<uib-accordion close-others="closeOthers">
+		<uib-accordion-group is-open="observation.open" ng-repeat="(key, observation) in summary.observations">
+			<uib-accordion-heading>
+				{{observation.name}}
+				<i class="fa pull-right" ng-class="{'fa-minus': observation.open, 'fa-plus': !observation.open}"></i>
+			</uib-accordion-heading>
+			<p>{{ observation.value }}</p>
+		</uib-accordion-group>
+	</uib-accordion>
+</div>

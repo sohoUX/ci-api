@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" ng-click="cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h3 class="modal-title">Enviar Minuta</h3>
+</div>
+<div class="modal-body" ng-init="$root.ready()">
+	<div ng-if="!is_sent">
+	    <form class="form">
+	    	<p>Escribir dirección de correo:</p>
+	    	<div class="form-group" ng-repeat="(key, target) in targets track by $index">
+	    		<input class="form-control" type="text" ng-model="targets[key]" ng-change="addTarget(key)" 
+	    			placeholder="correo@correo"/>
+	    	</div>
+	    </form>
+    </div>
+    <div class="loading" ng-show="loading">
+        <div class="step1"></div>
+        <div class="step2"></div>
+    </div>
+    <div ng-if="is_sent">
+    	<p>{{ message }}</p>
+    </div>
+</div>
+<div class="modal-footer transparent">
+	<div class="col-md-12">
+    	<button class="btn btn--green col-md-offset-4 col-md-4" type="button" 
+    		ng-if="!is_sent" ng-click="send()">Enviar</button>
+    	<button class="btn btn-primary col-md-offset-4 col-md-4" type="button" 
+    		ng-if="is_sent" ng-click="exit()">Salir<i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+		</button>
+    </div>
+</div>
