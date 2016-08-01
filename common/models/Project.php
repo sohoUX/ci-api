@@ -122,6 +122,21 @@ class Project extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public static function get($filters = []) {
+        $projects = Project::find()->all();
+        $results = [];
+        foreach( $projects as $i => $project ){
+            $results[$i] = $project->getAttributes();
+            $results[$i]['company'] = $project->company;
+            $results[$i]['labels']  = $project->labels;
+        }
+
+        return $results;
+    }    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
@@ -143,16 +158,10 @@ class Project extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubsidiaries() {
-        return $this->hasMany(Subsidiary::className(), ['id' => 'subsidiary_id'])
-        ->viaTable('project_subsidiary', ['project_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRoundObservations() {
-        return $this->hasMany(ProjectRoundObservations::className(), ['id' => 'project_id']);
+    public function getLabels() {
+        return $this->hasMany(Label::className(), ['id' => 'label_id'])
+            ->viaTable('project_label', ['project_id' => 'id'])
+            ;
     }
 
     /**
@@ -168,15 +177,6 @@ class Project extends \yii\db\ActiveRecord
             }
         }
         return $this;
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getForms() {
-        return $this->hasMany(Form::className(), ['id' => 'form_id'])
-            ->viaTable('project_form', ['project_id' => 'id'])
-            ;
     }
 
     /**

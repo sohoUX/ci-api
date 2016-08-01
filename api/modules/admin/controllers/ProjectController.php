@@ -4,7 +4,6 @@ namespace api\modules\admin\controllers;
 
 use Yii;
 use common\models\Project;
-use common\models\Project;
 use api\controllers\Response;
 use yii\web\HttpException;
 use yii\web\BadRequestHttpException;
@@ -18,7 +17,7 @@ class ProjectController extends \yii\web\Controller
 	private $modelClass = "common\models\Project";
 
     public function actionIndex(){
-        $companies = Project::find()->all();
+        $companies = Project::get();
 
         return $companies;
     }

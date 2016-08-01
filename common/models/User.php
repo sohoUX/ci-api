@@ -301,18 +301,13 @@ class User extends ActiveRecord implements IdentityInterface
         }
     }
 
-    public function getProjects(){
-        $roundsConsultant = RoundConsultant::findAll(['consultant_id' => $this->id]);
-        $projects = [];
-        foreach( $roundsConsultant as $roundConsultant ){
-            $projects[$roundConsultant->round->project->id] = $roundConsultant->round->project;
-        }
-
-        return $projects;
-    }
-
     public function getCompanies(){
         return $this->hasMany(Company::className(), ['id' => 'user_id'])
             ->viaTable('company_user', ['company_id' => 'id']);
+    }
+
+    public function getPositons(){
+        return $this->hasMany(Position::className(), ['id' => 'user_id'])
+            ->viaTable('company_user', ['position_id' => 'id']);
     }
 }

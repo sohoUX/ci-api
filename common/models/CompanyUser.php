@@ -11,6 +11,7 @@ use \yii\web\UploadedFile;
  * @property integer $id
  * @property integer $company_id
  * @property integer $user_id
+ * @property integer $position_id
  */
 class CompanyUser extends \yii\db\ActiveRecord
 {
@@ -28,7 +29,7 @@ class CompanyUser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_id', 'user_id'], 'integer']
+            [['company_id', 'user_id', 'position_id'], 'integer']
         ];
     }
 
@@ -41,6 +42,7 @@ class CompanyUser extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'Usuario',
             'company_id' => 'Empresa',
+            'position_id' => 'Cargo',
         ];
     }
 
@@ -56,6 +58,13 @@ class CompanyUser extends \yii\db\ActiveRecord
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosition() {
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
     }
 
 }
